@@ -154,4 +154,56 @@ lastname is ${user1.lastname}`);
 let { firstname: fname, lastname: lname } = user1;
 console.log(fname,lname);
 
+let [justApple,...restEdibles]=edibles;
+console.log(justApple);
+console.log(restEdibles);
+
+function getEdibles(apples?,...restEdibles){
+  console.log(apples);
+  console.log(getEdibles);
+}
+getEdibles(...edibles);
+
+// Classses
+class Person{
+  // firstname:string;
+  // lastname:string;
+  // age:number;
+
+  // constructor(firstname:string,lastname:string){
+  //     this.lastname = lastname;
+  //     this.firstname = firstname;
+  // }
+
+    // Shorter way to assign values
+    constructor(
+      private firstname:string,
+      private lastname:string,
+      private age:number
+    ){}
+
+  getDetails():string{
+    return `${this.firstname} ${this.lastname} ${this.age}`;
+  }
+}
+
+class Employee extends Person{
+  constructor(
+    private id:number,
+    firstname:string,
+    lastname:string,
+    age:number
+  ){
+    super(firstname,lastname,age);
+  }
+  // getDetails():string{
+  //   return `${this.firstname} ${this.lastname} ${this.age}`;
+  // }
+}
+
+const per1 : Person = new Person('Pratap', 'Singh',24);
+const manager:Person = new Employee(101,'Anju','Rathore',23)
+console.log(per1);
+console.log(per1.getDetails());
+console.log(manager)
 
