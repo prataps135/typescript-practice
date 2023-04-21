@@ -152,20 +152,20 @@ lastname is ${user1.lastname}`);
 
 // Destructor operator
 let { firstname: fname, lastname: lname } = user1;
-console.log(fname,lname);
+console.log(fname, lname);
 
-let [justApple,...restEdibles]=edibles;
+let [justApple, ...restEdibles] = edibles;
 console.log(justApple);
 console.log(restEdibles);
 
-function getEdibles(apples?,...restEdibles){
+function getEdibles(apples?, ...restEdibles) {
   console.log(apples);
   console.log(getEdibles);
 }
 getEdibles(...edibles);
 
 // Classses
-class Person{
+class Person {
   // firstname:string;
   // lastname:string;
   // age:number;
@@ -175,35 +175,60 @@ class Person{
   //     this.firstname = firstname;
   // }
 
-    // Shorter way to assign values
-    constructor(
-      private firstname:string,
-      private lastname:string,
-      private age:number
-    ){}
+  // Shorter way to assign values
+  constructor(
+    private firstname: string,
+    private lastname: string,
+    private age: number
+  ) {}
 
-  getDetails():string{
-    return `${this.firstname} ${this.lastname} ${this.age}`;
+  getDetails(): string {
+    return `${this.firstname} ${this.lastname}`;
   }
 }
 
-class Employee extends Person{
-  constructor(
-    private id:number,
-    firstname:string,
-    lastname:string,
-    age:number
-  ){
-    super(firstname,lastname,age);
+class Employee extends Person {
+  get employeeId(): number {
+    return this.id;
   }
+
+  set employeeId(id: number) {
+    this.id = id;
+  }
+
+  constructor(
+    private id: number,
+    firstname: string,
+    private middlename: string,
+    lastname: string,
+    age: number
+  ) {
+    super(firstname, lastname, age);
+  }
+  getDetails(): string {
+    const nameSegments: Array<string> = super.getDetails().split(' ');
+    nameSegments.splice(1, 0, this.middlename);
+    const fullname = nameSegments.join(' ');
+    return `${fullname}`;
+  }
+
   // getDetails():string{
   //   return `${this.firstname} ${this.lastname} ${this.age}`;
   // }
 }
 
-const per1 : Person = new Person('Pratap', 'Singh',24);
-const manager:Person = new Employee(101,'Anju','Rathore',23)
+const per1: Person = new Person('Pratap', 'Singh', 24);
+const manager: Employee = new Employee(101, 'Anju', 'Baisa', 'Rathore', 23);
 console.log(per1);
 console.log(per1.getDetails());
-console.log(manager)
+console.log(manager.getDetails());
+manager.employeeId = 102;
+console.log(manager.employeeId);
 
+// Interfaces
+interface Person{
+  firstName:string;
+  lastName:string;
+}
+
+// Objects
