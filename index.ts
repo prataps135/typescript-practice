@@ -327,3 +327,11 @@ user5.lazyGreet();
 
 // Modules
 // using Import and Export in different ts files. We can use modules
+import Dashboard,{log as dashLog} from './module/dashboard.component';
+
+const dashboard:Dashboard = new Dashboard();
+dashboard.createDashborad();
+
+
+// Fetch Api
+
