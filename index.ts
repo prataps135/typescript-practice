@@ -226,9 +226,104 @@ manager.employeeId = 102;
 console.log(manager.employeeId);
 
 // Interfaces
-interface Person{
-  firstName:string;
-  lastName:string;
+interface Human {
+  readonly age: number;
+  walk(): void;
+}
+
+interface Person1 extends Human {
+  firstName: string;
+  lastName?: string;
 }
 
 // Objects
+const user2: Person1 = {
+  firstName: ``,
+  lastName: ``,
+  age: 24,
+  walk(): void {
+    return;
+  },
+};
+
+// Arrow function
+function greetUser(name: string) {
+  console.log(`Hello ${name}`);
+}
+
+const greetUser1 = function (name: string) {
+  console.log(`Hello ${name}`);
+};
+
+greetUser('John');
+greetUser1('Jane');
+
+const greetUserArray = (name: string) => console.log(`Hello ${name}`);
+greetUserArray('Pratap');
+
+const edibles1 = [
+  {
+    edible: 'pizza',
+    isVegan: false,
+  },
+  {
+    edible: 'Apple',
+    isVegan: true,
+  },
+  {
+    edible: 'Burger',
+    isVegan: false,
+  },
+  {
+    edible: 'Banana',
+    isVegan: true,
+  },
+];
+
+console.log(
+  edibles1.filter(function (item) {
+    return item.isVegan;
+  })
+);
+
+console.log(edibles1.filter((item) => item.isVegan));
+
+// this will produce user undefined
+const user3 = {
+  firstname: 'John',
+  lastname: 'Deo',
+  lazyGreet: function () {
+    setTimeout(function () {
+      console.log(`Hello ${this.firstname}`);
+    }, 1000);
+  },
+};
+user3.lazyGreet();
+
+// rescoping this keyword
+const user4 = {
+  firstname: 'John',
+  lastname: 'Deo',
+  lazyGreet: function () {
+    const that = this;
+    setTimeout(function () {
+      console.log(`Hello ${that.firstname}`);
+    }, 1000);
+  },
+};
+user4.lazyGreet();
+
+const user5 = {
+  firstname: 'John',
+  lastname: 'Deo',
+  lazyGreet: function () {
+    setTimeout(() => {
+      console.log(`Hello ${this.firstname}`);
+    }, 1000);
+  },
+};
+user5.lazyGreet();
+
+
+// Modules
+// using Import and Export in different ts files. We can use modules
